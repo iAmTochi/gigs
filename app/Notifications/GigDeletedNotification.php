@@ -41,8 +41,8 @@ class GigDeletedNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('A Gig has been deleted.')
+                    ->action('Click for More Info', url('/'))
                     ->line('Thank you for using our application!');
     }
 

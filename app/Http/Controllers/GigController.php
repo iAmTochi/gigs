@@ -170,6 +170,10 @@ class GigController extends Controller
      */
     public function destroy(Gig $gig)
     {
-        //
+        $gig->delete();
+
+        session()->flash('success', 'Gig deleted successfully');
+
+        return redirect()->back();
     }
 }

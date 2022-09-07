@@ -82,7 +82,9 @@
                                         <div class="dash-action">
                                             <a href="javascript:void(0);" class="p-2 circle text-info bg-light-info d-inline-flex align-items-center justify-content-center mr-1"><i class="lni lni-eye"></i></a>
                                             <a href="{{ route('gigs.edit', $gig->id) }}" class="p-2 circle text-info bg-light-info d-inline-flex align-items-center justify-content-center mr-1"><i class="lni lni-pencil"></i></a>
-                                            <a href="javascript:void(0);" class="p-2 circle text-danger bg-light-danger d-inline-flex align-items-center justify-content-center ml-1"><i class="lni lni-trash-can"></i></a>
+                                            <a style="cursor: pointer;" onclick="handleDelete('{{ route('gigs.destroy', $gig->id) }}')" class="p-2 circle text-danger bg-light-danger d-inline-flex align-items-center justify-content-center ml-1"><i class="lni lni-trash-can"></i></a>
+
+
                                         </div>
                                     </td>
                                 </tr>
@@ -118,6 +120,34 @@
                     </ul>
                 </div>
             </div>
+            <!-- Modal -->
+            <div  class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="z-index: 1050;">
+                    <form action="" method="POST" id="deleteForm">
+                        @method('DELETE')
+                        @csrf
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center font-weight-bold">
+                                    Are you sure you want to delete this?
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No, Go back</button>
+                                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
 
         </div>
 
@@ -138,6 +168,13 @@
                 $(document).ready(function() {
                     $('.tags-selector').select2();
                 });
+            </script>
+            <script>
+                function handleDelete(url) {
+                    let form = document.getElementById('deleteForm');
+                    form.action = url;
+                    $('#deleteModal').modal('show')
+                }
             </script>
         @endsection
 
@@ -170,6 +207,16 @@
                     height: 50px;
                     user-select: none;
                     -webkit-user-select: none;
+                }
+
+                .modal-backdrop {
+                    /*position: fixed;*/
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    z-index: -1;
+                    background-color: #000;
                 }
             </style>
 @endsection

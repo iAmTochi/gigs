@@ -41,8 +41,8 @@ class GigUpdatedNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('A gig has been updated.')
+                    ->action('Click for more info', url('/'))
                     ->line('Thank you for using our application!');
     }
 
