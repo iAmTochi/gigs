@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     use HasFactory;
+
+
+
+    public function role(){
+
+        return $this->hasMany(Role::class);
+    }
 }

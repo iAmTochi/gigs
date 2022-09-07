@@ -35,6 +35,18 @@ class Gig extends Model
 
 
     /**
+     * a gig belongs to user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(){
+
+        return $this->belongsTo(User::class);
+
+    }
+
+
+    /**
      * a gig belongs to role
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -42,5 +54,20 @@ class Gig extends Model
     public function role(){
 
         return  $this->belongsTo(Role::class);
+    }
+
+
+    public function company(){
+
+        return  $this->belongsTo(Company::class);
+    }
+
+    public function country(){
+
+        return  $this->belongsTo(Country::class);
+    }
+    public function state(){
+
+        return  $this->belongsTo(State::class);
     }
 }
