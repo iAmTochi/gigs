@@ -17,18 +17,11 @@
                         @csrf
 
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <label>First Name *</label>
-                                <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" placeholder="First Name">
+                            <div class="form-group col-12">
+                                <label>Full Name</label>
+                                <input type="text" name="name" value="{{ old('name') }}" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Full Name">
                                 <span role="alert" class="invalid-feedback">
-                                        <strong>{{$errors->first('first_name')}}</strong>
-                                </span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Last Name</label>
-                                <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" placeholder="Last Name">
-                                <span role="alert" class="invalid-feedback">
-                                        <strong>{{$errors->first('last_name')}}</strong>
+                                        <strong>{{$errors->first('name')}}</strong>
                                 </span>
                             </div>
                         </div>
