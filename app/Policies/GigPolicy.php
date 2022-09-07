@@ -65,7 +65,7 @@ class GigPolicy
      */
     public function delete(User $user, Gig $gig)
     {
-        //
+        return $user->role_id ==  User::ADMIN;
     }
 
     /**
