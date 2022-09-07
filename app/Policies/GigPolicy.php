@@ -53,7 +53,7 @@ class GigPolicy
      */
     public function update(User $user, Gig $gig)
     {
-        //
+        return $user->role_id ==  User::ADMIN;
     }
 
     /**
