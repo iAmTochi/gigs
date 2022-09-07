@@ -47,8 +47,7 @@ class CompanyController extends Controller
     {
 
 
-        $company = $this->company->create($request->all()); // used $request->all() because the request name and column is the same
-
+        $company = $this->company->create($request->only('name')); // used $request->only() because the request name and column is the same
 
 
         session()->flash('success', $company->name. ' added successfully');
@@ -75,7 +74,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('company.create')->with('company', $company);
     }
 
     /**
@@ -85,9 +84,14 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyRequest $request, Company $company)
     {
-        //
+
+        $company->update($request->only('name'));
+
+        session()->flash('success', 'Company update successfully');
+
+        return redirect()->route('company.index');
     }
 
     /**
@@ -98,6 +102,10 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+
+        session()->flash('success', 'Company deleted successfully');
+
+        return redirect()->back();
     }
 }
