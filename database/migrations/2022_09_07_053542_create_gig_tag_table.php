@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('gig_id');
             $table->unsignedBigInteger('tag_id');
-            $table->timestamps();
         });
     }
 
