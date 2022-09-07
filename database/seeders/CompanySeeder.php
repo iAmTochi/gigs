@@ -17,9 +17,9 @@ class CompanySeeder extends Seeder
     {
         $roles = [
 
-            'Admin',
-            'Manager',
-            'User',
+            'Krystal Digital Solutions',
+            'Alphabet',
+            'Apple',
         ];
 
         foreach ($roles as $role){
