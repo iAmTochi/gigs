@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('gig_tag', function (Blueprint $table) {
+        Schema::create('gig_tag', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('gig_id');
             $table->unsignedBigInteger('tag_id');
@@ -28,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('gig_tag', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('gig_tag');
     }
 };
