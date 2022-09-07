@@ -16,7 +16,7 @@ class StateSeeder extends Seeder
     public function run()
     {
         DB::insert("
-        INSERT INTO states (id, state_name) VALUES
+        INSERT INTO states (id, name) VALUES
             (1, 'ABIA'),
             (2, 'ADAMAWA'),
             (3, 'AKWA IBOM'),
