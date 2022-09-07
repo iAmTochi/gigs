@@ -30,6 +30,8 @@ class GigController extends Controller
         $this->country  = new Country();
         $this->tag      = new Tag();
         $this->gig      = new Gig();
+
+        $this->middleware('admin')->only(['destroy','update']);
     }
 
     /**
