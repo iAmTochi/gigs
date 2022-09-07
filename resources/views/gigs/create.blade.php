@@ -88,7 +88,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label  class="text-dark ft-medium">Add Tags</label>
-                                        <select name="tag" id="" class="form-control">
+                                        <select name="tags[]" id="tags" class="form-control tags-selector" multiple>
                                             <option value="">Select tags</option>
                                             @foreach($tags as $tag)
                                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
@@ -118,4 +118,22 @@
 
     <!-- footer -->
     @include('partial._admin_foot')
+@endsection
+
+
+@section('scripts')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+
+    <script>
+
+        $(document).ready(function() {
+            $('.tags-selector').select2();
+        });
+    </script>
+@endsection
+
+@section('styles')
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
 @endsection
