@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Country;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,13 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        //
+        $countries= ['Nigeria','Ghana'];
+
+        foreach($countries as $country){
+            Country::create([
+                'name' => $country,
+
+            ]);
+        }
     }
 }
