@@ -25,7 +25,7 @@
                     <div class="cl-justify">
 
                         <div class="cl-justify-first">
-                            <p class="m-0 p-0 ft-sm">You have applied <span class="text-dark ft-medium">26</span> jobs</p>
+                            <p class="m-0 p-0 ft-sm"> <span class="text-dark ft-medium"></span> .</p>
                         </div>
 
                         <div class="cl-justify-last">
@@ -39,14 +39,7 @@
                                     </select>
                                 </div>
                                 <div class="dlc-list ml-2">
-                                    <select class="form-control sm rounded">
-                                        <option>Show 20</option>
-                                        <option>Show 30</option>
-                                        <option>Show 40</option>
-                                        <option>Show 50</option>
-                                        <option>Show 100</option>
-                                        <option>Show 250</option>
-                                    </select>
+                                    <a href="{{ route('gigs.create') }}" style="background-color: black" class="btn  btn-secondary rounded">Add Gig</a>
                                 </div>
                             </div>
                         </div>
