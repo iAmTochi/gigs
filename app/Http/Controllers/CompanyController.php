@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    protected $company;
+
+    public function __construct()
+    {
+        $this->company = new Company();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,9 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        return view('company.index')
+            ->with('companies', $this->company->all())
+            ->withCount(0);
     }
 
     /**
@@ -24,7 +33,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('company.create');
     }
 
     /**
