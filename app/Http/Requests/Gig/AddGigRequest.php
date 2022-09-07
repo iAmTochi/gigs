@@ -28,10 +28,10 @@ class AddGigRequest extends FormRequest
             'company'   => 'required',
             'country'   => 'required',
             'state'     => 'required',
-            'tag'       => 'required',
+            'tags'      => 'required',
             'address'   => 'required|string',
-            'min'       => 'required|numeric',
-            'max'       => 'required|numeric',
+            'minimum_salary'  => 'required|numeric',
+            'maximum_salary'  => 'required|numeric',
 
         ];
     }
