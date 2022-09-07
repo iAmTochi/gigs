@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Gig\AddGigRequest;
+use App\Models\Company;
 use App\Models\Country;
 use App\Models\Gig;
 use App\Models\Role;
@@ -22,7 +24,7 @@ class GigController extends Controller
     public function __construct()
     {
         $this->role     = new Role();
-        $this->company  = new Country();
+        $this->company  = new Company();
         $this->state    = new State();
         $this->country  = new Country();
         $this->tag      = new Tag();
@@ -36,7 +38,12 @@ class GigController extends Controller
      */
     public function index()
     {
-        //
+        $data=[
+            'tags' => $this->tag->all(),
+            'gigs' => $this->gig->all()
+        ];
+
+        return view('gigs.index', $data);
     }
 
     /**
@@ -48,9 +55,9 @@ class GigController extends Controller
     {
         $data = [
             'roles' => $this->role->all(),
-            'companies' => $this->role->all(),
-            'states' => $this->role->all(),
-            'countries' => $this->role->all(),
+            'companies' => $this->company->all(),
+            'states' => $this->state->all(),
+            'countries' => $this->country->all(),
             'tags' => $this->tag->all(),
         ];
         return view('gigs.create', $data);
@@ -62,9 +69,32 @@ class GigController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddGigRequest $request)
     {
-        //
+
+
+        $data = [
+            'user_id'   =>  auth()->user()->id,
+            'Role_id'   =>  $request->role,
+            'company_id'=>  $request->company,
+            'country_id'=>  $request->country,
+            'state_id'  =>  $request->state,
+            'address'   =>  $request->address,
+            'min'       =>  $request->minimum_salary,
+            'max'       =>  $request->maximum_salary,
+        ];
+
+        $gig = $this->gig->create($data);
+
+        if($request->tags){
+
+            $gig->tags()->attach($request->tags);
+        }
+
+        session()->flash('success', 'Gig added successfully');
+
+        return redirect()->route('gigs.index');
+
     }
 
     /**
