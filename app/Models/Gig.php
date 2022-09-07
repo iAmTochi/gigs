@@ -21,6 +21,12 @@ class Gig extends Model
     ];
 
 
+    public function hasTag($tagId){
+
+        return in_array($tagId, $this->tags->pluck('id')->toArray());
+    }
+
+
     /**
      * adding the relationship with Tag table
      * a gig has many tags

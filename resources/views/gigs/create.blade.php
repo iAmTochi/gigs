@@ -30,15 +30,24 @@
                         </div>
 
                         <div class="_dashboard_content_body py-3 px-3">
-                            <form class="row" action="{{ route('gigs.store') }}" method="post">
+                            <form class="row" action="{{ isset($gig)? route('gigs.update', $gig->id) : route('gigs.store')  }}" method="post">
                                 @csrf
+                                @isset($gig)
+                                    @method('PUT')
+                                @endisset
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label  class="text-dark ft-medium">Role</label>
                                         <select name="role" id="" class="form-control tags-selector @error('role') is-invalid @enderror">
                                             <option value="">Choose a Role</option>
                                             @foreach($roles as $role)
-                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                            <option value="{{ $role->id }}"
+                                                @isset($gig)
+                                                    @if($role->id === $gig->role_id)
+                                                    selected
+                                                    @endif
+                                                @endisset
+                                            >{{ $role->name }}</option>
                                             @endforeach
 
                                         </select>
@@ -53,7 +62,13 @@
                                         <select name="company" id="" class="form-control tags-selector @error('company') is-invalid @enderror">
                                             <option value="">Choose a Company</option>
                                             @foreach($companies as $company)
-                                            <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                            <option value="{{ $company->id }}"
+                                                @isset($gig)
+                                                    @if($company->id === $gig->company_id)
+                                                    selected
+                                                    @endif
+                                                @endisset
+                                            >{{ $company->name }}</option>
                                             @endforeach
 
                                         </select>
@@ -68,7 +83,13 @@
                                         <select name="country" id="" class="form-control tags-selector @error('country') is-invalid @enderror">
                                             <option value="">Choose a Country</option>
                                             @foreach($countries as $country)
-                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                            <option value="{{ $country->id }}"
+                                                    @isset($gig)
+                                                    @if($country->id === $gig->country_id)
+                                                    selected
+                                                @endif
+                                                @endisset
+                                            >{{ $country->name }}</option>
                                             @endforeach
 
                                         </select>
@@ -83,7 +104,13 @@
                                         <select style="padding: 40px 0 !important;" name="state" id="" class="form-control tags-selector @error('state') is-invalid @enderror">
                                             <option value="">Choose a State/Region</option>
                                             @foreach($states as $state)
-                                            <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                            <option value="{{ $state->id }}"
+                                                @isset($gig)
+                                                    @if($state->id === $gig->state_id)
+                                                    selected
+                                                @endif
+                                                @endisset
+                                            >{{ $state->name }}</option>
                                             @endforeach
 
                                         </select>
@@ -94,7 +121,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea name="address" class="form-control @error('address') is-invalid @enderror" id="" rows="2" placeholder="Address"></textarea>
+                                        <textarea name="address" class="form-control @error('address') is-invalid @enderror" id="" rows="2" placeholder="Address">{{ isset($gig)? $gig->address : old('address') }}</textarea>
                                         <span role="alert" class="invalid-feedback">
                                             <strong>{{$errors->first('address')}}</strong>
                                         </span>
@@ -106,7 +133,13 @@
                                         <select name="tags[]" id="tags" class="form-control tags-selector @error('tags') is-invalid @enderror" multiple>
                                             <option value="">Select tags</option>
                                             @foreach($tags as $tag)
-                                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                                <option value="{{ $tag->id }}"
+                                                    @isset($gig)
+                                                        @if($gig->hasTag($tag->id))
+                                                        selected
+                                                        @endif
+                                                    @endisset
+                                                >{{ $tag->name }}</option>
                                             @endforeach
 
                                         </select>
@@ -118,7 +151,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label  class="text-dark ft-medium">Salary</label>
-                                        <input type="text" name="minimum_salary" placeholder="Minimum" class="form-control @error('minimum_salary') is-invalid @enderror">
+                                        <input type="text" value="{{ isset($gig)? $gig->min: old('minimum_salary') }}" name="minimum_salary" placeholder="Minimum" class="form-control @error('minimum_salary') is-invalid @enderror">
                                         <span role="alert" class="invalid-feedback">
                                             <strong>{{$errors->first('minimum_salary')}}</strong>
                                         </span>
@@ -128,7 +161,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label  class="text-white">.</label>
-                                        <input type="text" name="maximum_salary" placeholder="Maximum" class="form-control @error('maximum_salary') is-invalid @enderror">
+                                        <input type="text" value="{{ isset($gig)? $gig->max : old('maximum_salary') }}" name="maximum_salary" placeholder="Maximum" class="form-control @error('maximum_salary') is-invalid @enderror">
                                         <span role="alert" class="invalid-feedback">
                                             <strong>{{$errors->first('maximum_salary')}}</strong>
                                         </span>
@@ -136,7 +169,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-md ft-medium text-light rounded theme-bg">Add Gig</button>
+                                        <button type="submit" class="btn btn-md ft-medium text-light rounded theme-bg">{{ isset($gig)? 'Update' : 'Add' }} Gig</button>
                                     </div>
                                 </div>
 
