@@ -7,7 +7,7 @@
                     <a href="" data-toggle="collapse" data-target="#manage-job" aria-expanded="true" aria-controls="manage-job"><i class="lni lni-add-files mr-2"></i>Gigs</a>
 
                     <ul id="manage-job" class="collapse">
-                        <li><a href="#"><i class="lni lni-files mr-2"></i>View All Gigs<span class="count-tag bg-warning">4</span></a></li>
+                        <li><a href="{{ route('gigs.index') }}"><i class="lni lni-files mr-2"></i>View All Gigs<span class="count-tag bg-warning">4</span></a></li>
                         <li><a href="{{ route('gigs.create') }}"><i class="lni lni-add-files mr-2"></i>Add a New Gig </a></li>
                     </ul>
 
