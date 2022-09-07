@@ -8,7 +8,7 @@
 
                     <ul id="manage-job" class="collapse">
                         <li><a href="#"><i class="lni lni-files mr-2"></i>View All Gigs<span class="count-tag bg-warning">4</span></a></li>
-                        <li><a href="#"><i class="lni lni-add-files mr-2"></i>Add a New Gig </a></li>
+                        <li><a href="{{ route('gigs.create') }}"><i class="lni lni-add-files mr-2"></i>Add a New Gig </a></li>
                     </ul>
 
 

@@ -2,11 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Gig;
+use App\Models\Role;
+use App\Models\State;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class GigController extends Controller
 {
+    protected $gig;
+    protected $role;
+    protected $company;
+    protected $state;
+    protected $country;
+    protected $tag;
+
+
+    public function __construct()
+    {
+        $this->role     = new Role();
+        $this->company  = new Country();
+        $this->state    = new State();
+        $this->country  = new Country();
+        $this->tag      = new Tag();
+        $this->gig      = new Gig();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +46,14 @@ class GigController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'roles' => $this->role->all(),
+            'companies' => $this->role->all(),
+            'states' => $this->role->all(),
+            'countries' => $this->role->all(),
+            'tags' => $this->tag->all(),
+        ];
+        return view('gigs.create', $data);
     }
 
     /**
