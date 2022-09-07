@@ -35,79 +35,103 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label  class="text-dark ft-medium">Role</label>
-                                        <select name="role" id="" class="form-control">
+                                        <select name="role" id="" class="form-control tags-selector @error('role') is-invalid @enderror">
                                             <option value="">Choose a Role</option>
                                             @foreach($roles as $role)
                                             <option value="{{ $role->id }}">{{ $role->name }}</option>
                                             @endforeach
 
                                         </select>
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{$errors->first('role')}}</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label  class="text-dark ft-medium">Company</label>
-                                        <select name="company" id="" class="form-control">
+                                        <select name="company" id="" class="form-control tags-selector @error('company') is-invalid @enderror">
                                             <option value="">Choose a Company</option>
                                             @foreach($companies as $company)
                                             <option value="{{ $company->id }}">{{ $company->name }}</option>
                                             @endforeach
 
                                         </select>
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{$errors->first('company')}}</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label  class="text-dark ft-medium">Location</label>
-                                        <select name="country" id="" class="form-control">
+                                        <select name="country" id="" class="form-control tags-selector @error('country') is-invalid @enderror">
                                             <option value="">Choose a Country</option>
                                             @foreach($countries as $country)
                                             <option value="{{ $country->id }}">{{ $country->name }}</option>
                                             @endforeach
 
                                         </select>
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{$errors->first('country')}}</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="" class="text-white">.</label>
-                                        <select name="role" id="" class="form-control">
+                                        <select style="padding: 40px 0 !important;" name="state" id="" class="form-control tags-selector @error('state') is-invalid @enderror">
                                             <option value="">Choose a State/Region</option>
                                             @foreach($states as $state)
                                             <option value="{{ $state->id }}">{{ $state->name }}</option>
                                             @endforeach
 
                                         </select>
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{$errors->first('state')}}</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea name="address" class="form-control" id="" rows="2" placeholder="Address"></textarea>
+                                        <textarea name="address" class="form-control @error('address') is-invalid @enderror" id="" rows="2" placeholder="Address"></textarea>
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{$errors->first('address')}}</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label  class="text-dark ft-medium">Add Tags</label>
-                                        <select name="tags[]" id="tags" class="form-control tags-selector" multiple>
+                                        <select name="tags[]" id="tags" class="form-control tags-selector @error('tags') is-invalid @enderror" multiple>
                                             <option value="">Select tags</option>
                                             @foreach($tags as $tag)
                                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                             @endforeach
 
                                         </select>
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{$errors->first('tags')}}</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label  class="text-dark ft-medium">Salary</label>
-                                        <input type="text" name="min" placeholder="Minimum" class="form-control">
+                                        <input type="text" name="minimum_salary" placeholder="Minimum" class="form-control @error('minimum_salary') is-invalid @enderror">
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{$errors->first('minimum_salary')}}</strong>
+                                        </span>
                                     </div>
 
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label  class="text-white">.</label>
-                                        <input type="text" name="max" placeholder="Maximum" class="form-control">
+                                        <input type="text" name="maximum_salary" placeholder="Maximum" class="form-control @error('maximum_salary') is-invalid @enderror">
+                                        <span role="alert" class="invalid-feedback">
+                                            <strong>{{$errors->first('maximum_salary')}}</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -149,4 +173,32 @@
 @section('styles')
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+
+            <style>
+                .select2-container--default .select2-selection--single .select2-selection__rendered {
+                    color: #444;
+                    line-height: 50px;
+                }
+                .select2-container--default .select2-selection--single .select2-selection__arrow {
+                    height: 50px;
+                    position: absolute;
+                    top: 1px;
+                    right: 1px;
+                    width: 20px;
+                }
+                .select2-container--default .select2-selection--single {
+                    background-color: #fff;
+                    border: 1px solid #aaa;
+                    border-radius: 0px;
+                }
+
+                .select2-container .select2-selection--single {
+                    box-sizing: border-box;
+                    cursor: pointer;
+                    display: block;
+                    height: 50px;
+                    user-select: none;
+                    -webkit-user-select: none;
+                }
+            </style>
 @endsection
