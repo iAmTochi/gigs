@@ -34,6 +34,7 @@
             background: #ff0000 !important;
 
         }
+
     </style>
     @yield('styles')
 
