@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Company\CompanyRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -42,9 +43,17 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
-        //
+
+
+        $company = $this->company->create($request->all()); // used $request->all() because the request name and column is the same
+
+
+
+        session()->flash('success', $company->name. ' added successfully');
+
+        return redirect()->route('companies.index');
     }
 
     /**
