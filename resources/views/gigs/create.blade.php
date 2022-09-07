@@ -97,9 +97,22 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-xl-12 col-lg-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-md ft-medium text-light rounded theme-bg">Save Changes</button>
+                                        <label  class="text-dark ft-medium">Salary</label>
+                                        <input type="text" name="min" placeholder="Minimum" class="form-control">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label  class="text-white">.</label>
+                                        <input type="text" name="max" placeholder="Maximum" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-md ft-medium text-light rounded theme-bg">Add Gig</button>
                                     </div>
                                 </div>
 
