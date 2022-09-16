@@ -22,9 +22,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return view('company.index')
-            ->with('companies', $this->company->all())
-            ->withCount(0);
+        $companies = Company::all();
+        return view('company.index', compact('companies'))->withCount(0);
     }
 
     /**
